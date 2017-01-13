@@ -19,7 +19,7 @@ SPA application for working with learning materials. Each material has **title**
     - Shows the `title`, full `description`, `img`, `username` of the creator of the material and a list with all comments
       - Clicking on the `username` (who created the material) should open that user's profile page (`#/users/:username`)
 - **Registered and Logged-in users** can:
-  - **Have** a profile page on `/users/:username`
+  - **Have** a profile page on `#/user/profile`
   - **Create** a new material
     - Providing `title`, `description` and optionally `img`
   - **Leave** comments on existing materials

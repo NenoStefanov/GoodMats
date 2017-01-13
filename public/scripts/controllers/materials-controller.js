@@ -99,7 +99,7 @@ let MaterialsController = (function() {
     function addMaterial(context) {
         if (!AuthService.isLoggedIn()) {
             toastr.error('You must be logged in to post material!');
-            context.redirect('#/');
+            context.redirect('#/auth/login');
             return;
         }
 

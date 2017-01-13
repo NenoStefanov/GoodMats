@@ -15,6 +15,12 @@ let UsersController = (function() {
     }
 
     function getProfile(context) {
+        if (!AuthService.isLoggedIn()) {
+            toastr.error('You must be logged in to have profile page!');
+            context.redirect('#/auth/login');
+            return;
+        }
+
         Promise.all([
                 UsersService.getProfile(),
                 templates.get('profile')
