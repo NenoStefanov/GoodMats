@@ -1,0 +1,27 @@
+<section>
+	<h2>Materials</h2>
+	<form id="search-form" class="search-form-control">
+		<div class="input-group">
+			<input type="search" id="home-search-input" class="form-control input-sm" placeholder="Enter title, author or description">
+			<span class="input-group-btn">
+        		<button id="home-search-btn" class="btn btn-primary btn-sm" type="button">Search</button>
+   			</span>
+		</div>
+	</form>
+	{{#this}}
+	<div class="material-container">
+		{{#if img}}
+		<a href="#/materials/{{id}}">
+			<img class="material-image" src="{{img}}" alt="material image">
+		</a>
+		{{/if}}
+		<div class="material-info">
+			<h3><a href="#/materials/{{id}}">{{title}}</a></h3>
+			<p><strong>Description:</strong> {{description}}</p>
+			<small><i><strong>Posted by</strong> <a href="#/users/{{user.username}}">{{user.username}}</a> <strong>on</strong> <time>{{createdOn}}</time></i></small>
+			<br>
+			<small><i><strong>Comments:</strong> {{commentsCount}} <strong>Rating:</strong> {{rating}}</i></small>
+		</div>
+	</div>
+	{{/this}}
+</section>

@@ -1,0 +1,16 @@
+<section>
+	<h2>Hello, {{username}}</h2>
+	<div id="user-materials">
+		<h4>Your materials</h4>
+		{{#if userMaterials}} {{#userMaterials}}
+		<div class="material-container">
+			<div class="material-info">
+				<h3><a href="#/materials/{{id}}">{{title}}</a></h3>
+				<p><strong>Category:</strong> {{category}}</p>
+			</div>
+		</div>
+		{{/userMaterials}} {{else}}
+		<p>You have not materials</p>
+		{{/if}}
+	</div>
+</section>

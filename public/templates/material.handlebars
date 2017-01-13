@@ -1,0 +1,40 @@
+<section id="material" data-id="{{material.id}}">
+	<h2>{{material.title}}</h2>
+	<select id="material-status">
+    	<option values = "initial" selected disabled hidden>Add this material to watchlist</option>
+    	<option value="watched">watched</option>
+ 		<option value="watching">watching</option>
+   		<option value="want-to-watch">want-to-watch</option>
+	</select>
+	<br> {{#if material.img}}
+	<img id="material-detail-image" src="{{material.img}}" alt="material-image"> {{/if}}
+	<p>{{material.description}}</p>
+	<p>Created on:
+		<time>{{material.createdOn}}</time> by
+		<a href="#/users/{{material.user.username}}">{{material.user.username}}</a></p>
+	<p>Rating: {{material.rating}}</p>
+
+	<div id="comments-container">
+		<div class="col-lg-12 col-sm-12">
+			<div class="well">
+				{{#if isLoggedIn}}
+				<div class="input-group">
+					<input type="text" id="tb-add-comment" class="form-control input-sm chat-input" placeholder="Write your comment here..."
+					/>
+					<span id="btn-add-comment" class="input-group-btn">     
+						<a class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+					</span>
+				</div>
+				{{/if}}
+				<hr>
+				<ul>
+					{{#if material.commentsCount}} {{#material.comments}}
+					</br>
+					<li class="ui-state-default pull-left primary-font"><strong><a href="#/users/{{user.username}}">{{user.username}}</a> says:</strong> {{text}}</li>
+					<hr> {{/material.comments}} {{else}}
+					<p>No comments for this material</p>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+</section>

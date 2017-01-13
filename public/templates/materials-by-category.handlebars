@@ -1,0 +1,16 @@
+<section>
+	<h2>{{category}}</h2>
+	{{#if materials}} {{#materials}}
+	<div class="material-container">
+		<div class="material-info">
+			<h3><a href="#/materials/{{id}}">{{title}}</a></h3>
+			<p><strong>Description:</strong> {{description}}</p>
+			<small><i><strong>Posted by </strong><a href="#/users/{{user.username}}">{{user.username}}</a> <strong>on</strong> <time>{{createdOn}}</time></i></small>
+			<br>
+			<small><i><strong>Comments:</strong> {{comments.length}} <strong>Rating:</strong> {{rating}}</i></small>
+		</div>
+	</div>
+	{{/materials}} {{else}}
+	<p>You have not materials in this category</p>
+	{{/if}}
+</section>
