@@ -1,4 +1,4 @@
-let validator = (function() {
+var validator = (function() {
 
     function checkIfString(name, argument) {
         if (typeof(argument) !== 'string') {

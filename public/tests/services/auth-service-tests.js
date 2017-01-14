@@ -124,14 +124,14 @@ describe('AuthService', function() {
         it('Expect AuthService.login to login the right user and set him in localStorage', function(done) {
             AuthService.login(user)
                 .then(() => {
-                    expect(localStorage.getItem(LOCAL_STORAGE_USERNAME)).to.equal(user.username);
+                    expect(localStorage.getItem(constants.LOCAL_STORAGE_USERNAME)).to.equal(user.username);
                 })
                 .then(done, done);
         });
         it('Expect AuthService.login to set auth key in localStorage', function(done) {
             AuthService.login(user)
                 .then(() => {
-                    expect(localStorage.getItem(LOCAL_STORAGE_AUTHKEY)).to.equal(AUTHKEY);
+                    expect(localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)).to.equal(AUTHKEY);
                 })
                 .then(done, done);
         });
@@ -163,7 +163,7 @@ describe('AuthService', function() {
                     return AuthService.logout();
                 })
                 .then(() => {
-                    expect(localStorage.getItem(LOCAL_STORAGE_USERNAME)).to.be.null;
+                    expect(localStorage.getItem(constants.LOCAL_STORAGE_USERNAME)).to.be.null;
                 })
                 .then(done, done);
         });
@@ -173,7 +173,7 @@ describe('AuthService', function() {
                     return AuthService.logout();
                 })
                 .then(() => {
-                    expect(localStorage.getItem(LOCAL_STORAGE_AUTHKEY)).to.be.null;
+                    expect(localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)).to.be.null;
                 })
                 .then(done, done);
         });

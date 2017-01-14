@@ -1,9 +1,4 @@
 let MaterialsService = (function() {
-    const LOCAL_STORAGE_AUTHKEY = 'USER-AuthKey',
-        LOCAL_STORAGE_USERNAME = 'localStorage-username',
-        MIN_TITLE_LENGTH = 6,
-        MAX_TITLE_LENGTH = 100;
-
 
     function getMaterialById(id) {
         let url = 'api/materials/' + id;
@@ -27,7 +22,7 @@ let MaterialsService = (function() {
             .then(() => {
                 return jsonRequester.get(url, {
                     headers: {
-                        'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY)
+                        'x-auth-key': localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)
                     }
                 });
             })
@@ -60,14 +55,14 @@ let MaterialsService = (function() {
                 }
             })
             .then(() => {
-                validator.checkString('Title', material.title, MIN_TITLE_LENGTH, MAX_TITLE_LENGTH);
+                validator.checkString('Title', material.title, constants.MIN_TITLE_LENGTH, constants.MAX_TITLE_LENGTH);
                 validator.checkString('Description', material.description);
             })
             .then(() => {
                 return jsonRequester.post(url, {
                     data: material,
                     headers: {
-                        'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY)
+                        'x-auth-key': localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)
                     }
                 });
             })
@@ -93,7 +88,7 @@ let MaterialsService = (function() {
                         category: category
                     },
                     headers: {
-                        'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY)
+                        'x-auth-key': localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)
                     }
                 });
             })
@@ -119,7 +114,7 @@ let MaterialsService = (function() {
                         category: category
                     },
                     headers: {
-                        'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY)
+                        'x-auth-key': localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)
                     }
                 });
             })
@@ -142,7 +137,7 @@ let MaterialsService = (function() {
                 return jsonRequester.put(url, {
                     data: comment,
                     headers: {
-                        'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY)
+                        'x-auth-key': localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY)
                     }
                 });
             })

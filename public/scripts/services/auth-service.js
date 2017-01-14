@@ -1,19 +1,12 @@
 let AuthService = (function() {
-    const LOCAL_STORAGE_AUTHKEY = 'USER-AuthKey',
-        LOCAL_STORAGE_USERNAME = 'localStorage-username',
-        MIN_USERNAME_LENGTH = 6,
-        MAX_USERNAME_LENGTH = 30,
-        MIN_PASSWORD_LENGTH = 6,
-        MAX_PASSWORD_LENGTH = 30;
-
 
     function register(user) {
         let url = 'api/users';
 
         return new Promise((resolve, reject) => {
                 try {
-                    validator.checkUsername(user.username, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH);
-                    validator.checkPassword(user.password, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
+                    validator.checkUsername(user.username, constants.MIN_USERNAME_LENGTH, constants.MAX_USERNAME_LENGTH);
+                    validator.checkPassword(user.password, constants.MIN_PASSWORD_LENGTH, constants.MAX_PASSWORD_LENGTH);
                     resolve();
                 } catch (err) {
                     reject(err);
@@ -44,8 +37,8 @@ let AuthService = (function() {
                     throw new Error(res.result.err);
                 }
 
-                localStorage.setItem(LOCAL_STORAGE_USERNAME, res.result.username);
-                localStorage.setItem(LOCAL_STORAGE_AUTHKEY, res.result.authKey);
+                localStorage.setItem(constants.LOCAL_STORAGE_USERNAME, res.result.username);
+                localStorage.setItem(constants.LOCAL_STORAGE_AUTH_KEY, res.result.authKey);
 
                 return res.result.username;
             });
@@ -53,15 +46,15 @@ let AuthService = (function() {
 
     function logout() {
         return new Promise(resolve => {
-            localStorage.removeItem(LOCAL_STORAGE_USERNAME);
-            localStorage.removeItem(LOCAL_STORAGE_AUTHKEY);
+            localStorage.removeItem(constants.LOCAL_STORAGE_USERNAME);
+            localStorage.removeItem(constants.LOCAL_STORAGE_AUTH_KEY);
             resolve();
         });
     }
 
     function isLoggedIn() {
-        return !!localStorage.getItem(LOCAL_STORAGE_USERNAME) &&
-            !!localStorage.getItem(LOCAL_STORAGE_AUTHKEY);
+        return !!localStorage.getItem(constants.LOCAL_STORAGE_USERNAME) &&
+            !!localStorage.getItem(constants.LOCAL_STORAGE_AUTH_KEY);
     }
 
     return {

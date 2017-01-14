@@ -2,6 +2,8 @@ mocha.setup('bdd');
 
 const { expect, assert } = chai;
 
+const AUTHKEY = 'AUTHKEY';
+
 const username = 'USERNAME',
     password = 'PASSWORD';
 
@@ -11,14 +13,10 @@ const user = {
 };
 
 const material = {
-    title: 'SOME_MATERIAL_TITLE',
-    description: 'SOME_MATERIAL_DESCRIPTION',
-    img: 'http://html5beginners.com/wp-content/uploads/2014/09/js.png'
+    title: 'MATERIAL_TITLE',
+    description: 'MATERIAL_DESCRIPTION',
+    img: 'MATERIAL_IMAGE_LINK'
 };
-
-const AUTHKEY = 'AUTHKEY',
-    LOCAL_STORAGE_AUTHKEY = 'USER-AuthKey',
-    LOCAL_STORAGE_USERNAME = 'localStorage-username';
 
 const loginResponse = {
     result: {
@@ -27,16 +25,12 @@ const loginResponse = {
     }
 };
 
-const materialResponse = {
+const objResponse = {
     result: {
-        result: {}
+        result: 'FAKE_RESPONSE'
     }
 };
 
-const objResponse = {
-    result: {}
-};
-
 const arrResponse = {
-    result: []
+    result: ['FAKE_RESPONSE']
 };

@@ -170,7 +170,7 @@ describe('MaterialsService', function() {
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'post')
-                .returns(Promise.resolve(materialResponse));
+                .returns(Promise.resolve(objResponse));
             sinon.stub(jsonRequester, 'put')
                 .returns(Promise.resolve(loginResponse));
             localStorage.clear();
@@ -277,7 +277,7 @@ describe('MaterialsService', function() {
                     return MaterialsService.addMaterial(material);
                 })
                 .then((resp) => {
-                    expect(resp).to.eql(materialResponse.result.result);
+                    expect(resp).to.eql(objResponse.result.result);
                 })
                 .then(done, done);
         });

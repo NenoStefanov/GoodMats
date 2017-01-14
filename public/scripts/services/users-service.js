@@ -27,7 +27,7 @@ let UsersService = (function() {
                 }
             })
             .then(() => {
-                let username = localStorage.getItem('localStorage-username');
+                let username = localStorage.getItem(constants.LOCAL_STORAGE_USERNAME);
                 return getUser(username);
             });
     }

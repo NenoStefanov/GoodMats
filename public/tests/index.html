@@ -10,16 +10,20 @@
 <body>
     <div id="mocha"></div>
 
+    <!--Libs-->
     <script src="../bower_components/mocha/mocha.js"></script>
     <script src="../bower_components/chai/chai.js"></script>
     <script src="./sinon-1.17.6.js"></script>
 
+    <!--App-->
+    <script src="../scripts/utils/constants.js"></script>
     <script src="../scripts/utils/validator.js"></script>
     <script src="../scripts/utils/json-requester.js"></script>
     <script src="../scripts/services/auth-service.js"></script>
     <script src="../scripts/services/users-service.js"></script>
     <script src="../scripts/services/materials-service.js"></script>
 
+    <!--Tests-->
     <script src="./config.js"></script>
     <script src="./services/auth-service-tests.js"></script>
     <script src="./services/user-service-tests.js"></script>
