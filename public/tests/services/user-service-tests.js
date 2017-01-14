@@ -1,16 +1,11 @@
-describe('UsersService tests', function() {
+describe('UsersService', function() {
 
-    describe('UsersService.getUser() tests', function() {
-        const response = {
-            result: {}
-        };
-        const username = 'SOME_USERNAME';
+    describe('getUser', function() {
+        const url = 'api/profiles/' + username;
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'get')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
+                .returns(Promise.resolve(objResponse));
         });
 
         afterEach(function() {
@@ -31,29 +26,25 @@ describe('UsersService tests', function() {
                         .firstCall
                         .args[0];
 
-                    expect(actual).to.equal('api/profiles/' + username);
+                    expect(actual).to.equal(url);
                 })
                 .then(done, done);
         });
         it('Expect UsersService.getUser to return correct result', function(done) {
             UsersService.getUser(username)
                 .then((resp) => {
-                    expect(resp).to.eql(response.result);
+                    expect(resp).to.eql(objResponse.result);
                 })
                 .then(done, done);
         });
     });
 
-    describe('UsersService.getAllUsers() tests', function() {
-        const respone = {
-            result: []
-        };
+    describe('getAllUsers', function() {
+        const url = 'api/users';
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'get')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(respone);
-                }));
+                .returns(Promise.resolve(arrResponse));
         });
 
         afterEach(function() {
@@ -74,40 +65,27 @@ describe('UsersService tests', function() {
                         .firstCall
                         .args[0];
 
-                    expect(actual).to.equal('api/users');
+                    expect(actual).to.equal(url);
                 })
                 .then(done, done);
         });
         it('Expect UsersService.getAllUsers to return correct result', function(done) {
             UsersService.getAllUsers()
                 .then((resp) => {
-                    expect(resp).to.eql(respone.result);
+                    expect(resp).to.eql(arrResponse.result);
                 })
                 .then(done, done);
         });
     });
 
-    describe('UsersService.getProfile() tests', function() {
-        const response = {
-            result: {}
-        };
+    describe('getProfile', function() {
+        const url = 'api/profiles/' + user.username;
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'get')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
-
+                .returns(Promise.resolve(objResponse));
             sinon.stub(jsonRequester, 'put')
-                .returns(new Promise((resolve, reject) => {
-                    resolve({
-                        result: {
-                            username: user.username,
-                            authKey: AUTHKEY
-                        }
-                    });
-                }));
-
+                .returns(Promise.resolve(loginResponse));
             localStorage.clear();
         });
 
@@ -144,7 +122,7 @@ describe('UsersService tests', function() {
                         .firstCall
                         .args[0];
 
-                    expect(actual).to.equal('api/profiles/' + user.username);
+                    expect(actual).to.equal(url);
                 })
                 .then(done, done);
         });
@@ -154,7 +132,7 @@ describe('UsersService tests', function() {
                     return UsersService.getProfile();
                 })
                 .then((resp) => {
-                    expect(resp).to.eql(response.result);
+                    expect(resp).to.eql(objResponse.result);
                 })
                 .then(done, done);
         });

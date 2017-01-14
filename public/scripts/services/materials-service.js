@@ -76,7 +76,7 @@ let MaterialsService = (function() {
             });
     }
 
-    function addMaterialCategory(materialId, category) {
+    function addMaterialToCategory(materialId, category) {
         let url = 'api/user-materials';
 
         return new Promise((resolve, reject) => {
@@ -128,7 +128,7 @@ let MaterialsService = (function() {
             }));
     }
 
-    function addMaterialComment(materialId, comment) {
+    function addCommentToMaterial(materialId, comment) {
         let url = 'api/materials/' + materialId + '/comments';
 
         return new Promise((resolve, reject) => {
@@ -157,8 +157,8 @@ let MaterialsService = (function() {
         getMaterialsByCategory,
         getAllMaterials,
         addMaterial,
-        addMaterialCategory,
+        addMaterialToCategory,
         changeMaterialCategory,
-        addMaterialComment
+        addCommentToMaterial
     };
 })();

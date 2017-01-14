@@ -18,7 +18,7 @@ let MaterialsController = (function() {
                     let materialId = $('#material').attr('data-id'),
                         category = $(ev.target).val();
 
-                    MaterialsService.addMaterialCategory(materialId, category)
+                    MaterialsService.addMaterialToCategory(materialId, category)
                         .then(() => {
                             toastr.success('Material is successfull add to category ' + category);
                         })
@@ -40,7 +40,7 @@ let MaterialsController = (function() {
                             commentText: $('#tb-add-comment').val()
                         };
 
-                    MaterialsService.addMaterialComment(materialId, comment)
+                    MaterialsService.addCommentToMaterial(materialId, comment)
                         .then(() => {
                             toastr.success('You successfull post comment!');
                             setTimeout(function() {

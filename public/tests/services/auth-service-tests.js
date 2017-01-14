@@ -1,15 +1,11 @@
-describe('AuthService tests', function() {
+describe('AuthService', function() {
 
-    describe('AuthService.register() tests', function() {
-        const response = {
-            result: user
-        };
+    describe('register', function() {
+        const url = 'api/users';
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'post')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
+                .returns(Promise.resolve(objResponse));
         });
 
         afterEach(function() {
@@ -54,7 +50,7 @@ describe('AuthService tests', function() {
                         .firstCall
                         .args[0];
 
-                    expect(actual).to.equal('api/users');
+                    expect(actual).to.equal(url);
                 })
                 .then(done, done);
         });
@@ -74,25 +70,18 @@ describe('AuthService tests', function() {
         it('Expect AuthService.register to return the user', function(done) {
             AuthService.register(user)
                 .then((resp) => {
-                    expect(resp).to.eql(user);
+                    expect(resp).to.eql(objResponse.result);
                 })
                 .then(done, done);
         });
     });
 
-    describe('AuthService.login() tests', function() {
-        const response = {
-            result: {
-                username: user.username,
-                authKey: AUTHKEY
-            }
-        };
+    describe('login', function() {
+        const url = 'api/users/auth/';
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'put')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
+                .returns(Promise.resolve(loginResponse));
             localStorage.clear();
         });
 
@@ -114,7 +103,7 @@ describe('AuthService tests', function() {
                     const actual = jsonRequester.put
                         .firstCall
                         .args[0];
-                    expect(actual).to.equal('api/users/auth/');
+                    expect(actual).to.equal(url);
                 })
                 .then(done, done);
         });
@@ -149,25 +138,17 @@ describe('AuthService tests', function() {
         it('Expect AuthService.login to return username of logged user', function(done) {
             AuthService.login(user)
                 .then((resp) => {
-                    expect(resp).to.equal(user.username);
+                    expect(resp).to.equal(loginResponse.result.username);
                 })
                 .then(done, done);
         });
     });
 
-    describe('AuthService.logout() tests', function() {
-        const response = {
-            result: {
-                username: user.username,
-                authKey: AUTHKEY
-            }
-        };
+    describe('logout', function() {
 
         beforeEach(function() {
             sinon.stub(jsonRequester, 'put')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
+                .returns(Promise.resolve(loginResponse));
             localStorage.clear();
         });
 
@@ -198,19 +179,10 @@ describe('AuthService tests', function() {
         });
     });
 
-    describe('AuthService.isLoggedIn() tests', function() {
-        const response = {
-            result: {
-                username: user.username,
-                authKey: AUTHKEY
-            }
-        };
-
+    describe('isLoggedIn', function() {
         beforeEach(function() {
             sinon.stub(jsonRequester, 'put')
-                .returns(new Promise((resolve, reject) => {
-                    resolve(response);
-                }));
+                .returns(Promise.resolve(loginResponse));
             localStorage.clear();
         });
 
