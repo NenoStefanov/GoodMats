@@ -1,14 +1,3 @@
-mocha.setup('bdd');
-
-const { expect, assert } = chai;
-
-const user = {
-    username: 'SOME_USERNAME',
-    password: 'SOME_PASSWORD'
-};
-
-const AUTHKEY = 'SOME_AUTHKEY';
-
 describe('UsersService tests', function() {
 
     describe('UsersService.getUser() tests', function() {
@@ -128,6 +117,13 @@ describe('UsersService tests', function() {
             localStorage.clear();
         });
 
+        it('Expect UsersService.getProfile to fail, when have not logged-in user', function(done) {
+            UsersService.getProfile()
+                .catch((err) => {
+                    expect(err).not.to.be.null;
+                    done();
+                });
+        });
         it('Expect UsersService.getProfile to make exactly one jsonRequster.get call', function(done) {
             AuthService.login(user)
                 .then(() => {
@@ -137,13 +133,6 @@ describe('UsersService tests', function() {
                     expect(jsonRequester.get.calledOnce).to.be.true;
                 })
                 .then(done, done);
-        });
-        it('Expect UsersService.getProfile to fail, when have not logged-in user', function(done) {
-            UsersService.getProfile()
-                .catch(err => {
-                    expect(err).not.to.be.null;
-                    done();
-                });
         });
         it('Expect UsersService.getProfile to make correct jsonRequester.get call', function(done) {
             AuthService.login(user)
@@ -171,5 +160,3 @@ describe('UsersService tests', function() {
         });
     });
 });
-
-mocha.run();
