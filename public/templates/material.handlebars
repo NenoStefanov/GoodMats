@@ -1,11 +1,13 @@
 <section id="material" data-id="{{material.id}}">
 	<h2>{{material.title}}</h2>
-	<select id="material-status">
-    	<option values = "initial" selected disabled hidden>Add this material to watchlist</option>
-    	<option value="watched">watched</option>
- 		<option value="watching">watching</option>
-   		<option value="want-to-watch">want-to-watch</option>
-	</select>
+	{{#if isLoggedIn}}
+		<select id="material-status">
+			<option values = "initial" selected disabled hidden>Add this material to watchlist</option>
+			<option value="watched">watched</option>
+			<option value="watching">watching</option>
+			<option value="want-to-watch">want-to-watch</option>
+		</select>
+	{{/if}}
 	<br> {{#if material.img}}
 	<img id="material-detail-image" src="{{material.img}}" alt="material-image"> {{/if}}
 	<p>{{material.description}}</p>
